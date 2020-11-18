@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Weather</title>
+</head>
+
+<body class="container rounded" style="border:solid 5px  rgb(0, 155, 13) ;
+min-height: 100vh;
+border-radius: 10px;
+box-shadow: 0px 0px 15px black;
+transition: all 0.3s;
+">
+    <div class="jumbotron" style="background-color: black; color: rgb(0, 155, 13);margin-top:10px; ">
+        <h1>Welcome to Wethr</h1>
+    </div>
+
+    <div style="font-size: large;color:black">
+        <ul>
+            <li>Here you can get weather details of any location.</li>
+            <li>Simple fill logitude and latitude value of location.</li>
+            <li> You can also get weather of your location.</li>
+        </ul>
+
+
+    </div>
+    <br><br>
+    <div class="form-group">
+        <label class="control-label" style=' color: rgb(0, 155, 13)'>Longitude :</label>
+        <input type="text" class="form-control" id="long" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
+    </div>
+    <div class="form-group">
+        <label class="control-label" style=' color: rgb(0, 155, 13)'>Latitude :</label>
+        <input type="text" class="form-control" id="lat" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
+    </div>
+    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="func()">Get Weather</div>
+
+    <br><br>
+    <h1 style="color:black">For Current location click Weather. </h1>
+    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()">Weather of Current Loaction</div>
+    <br><br>
+    <div id="ready"></div>
+
+
+
+
+
+
+    <script>
+        var x = document.getElementById("ready");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = '<span style="font-size: large;color: black;">To view your result </span>    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()"><a href="/weather/' + position.coords.latitude + '/' + position.coords.longitude + '"" style="text-decoration: none;color: rgb(0, 155, 13)">Click here</a></div>'
+        }
+
+        function func() {
+            var z = document.getElementById("long").value;
+            var y = document.getElementById("lat").value;
+            x.innerHTML = '<span style="font-size: large;color: black;">To view your result </span>    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()"><a href="/weather/' + y + '/' + z + '" style="text-decoration: none;color: rgb(0, 155, 13)">Click here</a></div>'
+        }
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #current {
+            background-image: url(https://wallpaperaccess.com/full/2786588.jpg);
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-size: large;
+            margin: 0;
+        }
+        
+        #hours {
+            background-image: url(https://static.theprint.in/wp-content/uploads/2019/12/Night-Sky.jpg);
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            color: azure;
+            font-size: large;
+            margin: 0;
+        }
+        
+        .days {
+            background-image: url(https://i.inews.co.uk/content/uploads/2019/10/shutterstock_622509029.jpg);
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            font-size: 32px;
+            font-weight: 500;
+            margin: 0;
+            color: black;
+        }
+        
+        #date {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 32px;
+            text-align: center;
+        }
+        
+        #sun {
+            position: absolute;
+            bottom: 20px;
+            left: 350px;
+            font-size: 32px;
+            text-align: center;
+        }
+        
+        #temp {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-size: 96px;
+            text-align: center;
+        }
+        
+        #more {
+            float: right;
+            font-size: 32px;
+            margin-top: 100px;
+        }
+        
+        .ddate {
+            font-size: 32px;
+        }
+        
+        .morning {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="current">
+
+        <div id="date">
+
+
+            <% var y=new Date((current.dt+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ");%>
+                <%= y[1]+" "+y[2]+" "+y[3] %><br>
+                    <%= y[4] %>
+        </div>
+        <div id="sun">
+            <div>
+                <%  y=new Date((current.sunrise+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ") %>
+                    Sunrise:
+                    <%= y[4] %>
+            </div>
+
+            <div>
+                <%  y=new Date((current.sunset+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ") %>
+                    Sunset:
+                    <%= y[4] %>
+            </div>
+        </div>
+        <div id="temp">
+            <div>
+
+                <%= current.temp%>&#8451;
+            </div>
+            <div style="font-size: 32px;">
+                Feel Like:
+                <%= current.feels_like%>&#8451;
+            </div>
+        </div>
+        <div id="more">
+            <div>
+                Pressure:
+                <%= current.pressure%>
+            </div>
+            <div>
+                Humidity:
+                <%= current.humidity+"%"%>
+            </div>
+            <div>
+                Dew point:
+                <%= current.dew_point%>&#8451;
+            </div>
+            <div>
+                Clouds:
+                <%= current.clouds+"%"%>
+            </div>
+            <div>
+                UV index:
+                <%= current.uvi%>
+            </div>
+            <div>
+                Wind speed:
+                <%= current.wind_speed+"m/s"%>
+            </div>
+            <div>
+                visibility:
+                <%= current.visibility+"m"%>
+            </div>
+            <div>
+                Status:
+                <%= current.weather[0].description%>
+            </div>
+        </div>
+        <% var link="http://openweathermap.org/img/wn/"+current.weather[0].icon+"@2x.png" %>
+
+
+    </div>
+
+    <div id="hours">
+        <div style="font-size: 64px;text-align: center;">Next 24 Hours ForeCast</div>
+        <table style="width:100%;margin:10px">
+            <tr>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Feel Like</th>
+                <th>Humidity</th>
+                <th>Dew point</th>
+                <th>Clouds</th>
+                <th>Wind</th>
+                <th>Visibilty</th>
+                <th>Status</th>
+            </tr>
+            <% for (var i=0;i<24;i++) { %>
+                <tr>
+                    <th>
+                        <%  y=new Date((hourly[i].dt+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ");%>
+                            <%=y[4]%>
+                    </th>
+                    <th>
+                        <%=hourly[i].temp%>&#8451;</th>
+                    <th>
+                        <%=hourly[i].feels_like%>&#8451;</th>
+                    <th>
+                        <%=hourly[i].humidity+"%"%>
+                    </th>
+                    <th>
+                        <%=hourly[i].dew_point%>&#8451;
+                    </th>
+                    <th>
+                        <%=hourly[i].clouds+"%"%>
+                    </th>
+                    <th>
+                        <%=hourly[i].wind_speed+"m/s"%>
+                    </th>
+                    <th>
+                        <%=hourly[i].visibility+"m"%>
+                    </th>
+                    <th>
+                        <%=hourly[i].weather[0].main%>
+                    </th>
+                </tr>
+
+                <% } %>
+
+        </table>
+
+    </div>
+
+
+    <% for(var i=0;i<daily.length;i++) {%>
+
+        <div class="row days">
+            <div class="col-lg-8">
+
+                <div class="ddate" style="font-size:48px;padding:10px;">
+
+
+                    <% var y=new Date((daily[i].dt+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ");%>
+                        <%= y[1]+" "+y[2]+" "+y[3] %>,
+                            <%= daily[i].weather[0].description %>
+
+                </div>
+                <div class="rows">
+                    <div class="morning col-sm-6">
+                        Morning
+                        <div style="font-size: 96px;">
+                            <%=daily[i].temp.morn %>&#8451;
+                        </div>
+                        <div style="font-size: 32px;"> Feel Like
+                            <%=daily[i].feels_like.morn %>&#8451;</div>
+                    </div>
+                    <div class="morning col-sm-6">
+                        Day
+                        <div style="font-size: 96px;">
+                            <%=daily[i].temp.day %>&#8451;
+                        </div>
+                        <div style="font-size: 32px;"> Feel Like
+                            <%=daily[i].feels_like.day %>&#8451;</div>
+                    </div>
+                </div>
+
+                <div class="rows">
+                    <div class="morning col-sm-6">
+                        Evening
+                        <div style="font-size: 96px;">
+                            <%=daily[i].temp.eve %>&#8451;
+                        </div>
+                        <div style="font-size: 32px;"> Feel Like
+                            <%=daily[i].feels_like.eve %>&#8451;</div>
+                    </div>
+
+                    <div class="morning col-sm-6">
+                        Nigth
+                        <div style="font-size: 96px;">
+                            <%=daily[i].temp.night %>&#8451;
+                        </div>
+                        <div style="font-size: 32px;"> Feel Like
+                            <%=daily[i].feels_like.night %>&#8451;</div>
+                    </div>
+                </div>
+
+
+                <div class="dsun">
+                    <div>
+                        <%  y=new Date((daily[i].sunrise+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ") %>
+                            Sunrise:
+                            <%= y[4] %>
+                    </div>
+
+                    <div>
+                        <%  y=new Date((daily[i].sunset+timeshift)*1000);y=y.toUTCString();y=y.toString();y=y.split(" ") %>
+                            Sunset:
+                            <%= y[4] %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="margin-top:100px">
+                <div>
+                    Pressure:
+                    <%= daily[i].pressure%>
+                </div>
+                <div>
+                    Humidity:
+                    <%= daily[i].humidity+"%"%>
+                </div>
+                <div>
+                    Dew point:
+                    <%= daily[i].dew_point%>&#8451;
+                </div>
+                <div>
+                    Clouds:
+                    <%= daily[i].clouds+"%"%>
+                </div>
+                <div>
+                    UV index:
+                    <%=daily[i].uvi%>
+                </div>
+                <div>
+                    Wind speed:
+                    <%= daily[i].wind_speed+"m/s"%>
+                </div>
+                <div>
+                    visibility:
+                    <%= daily[i].visibility%>m
+                </div>
+                <div>
+                    Status:
+                    <%= daily[i].weather[0].description%>
+                </div>
+                <div>
+                    Max:
+                    <%= daily[i].temp.max%>
+                </div>
+                <div>
+                    Min:
+                    <%= daily[i].temp.min%>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <%}%>
+
+
+
+
+
+            <input type="text" hidden value="<%=timeshift%>" id="timeshift">
+</body>
+<script>
+    var timec = parseInt(document.getElementById("timeshift").value);
+
+    function unixTod(x) {
+
+        x += timec;
+        x = x * 1000;
+        letdate = new Date(x);
+        return x.getDate();
+    }
+</script>
+
+</html>
