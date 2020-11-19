@@ -24,8 +24,8 @@
             width: 100%;
             height: 700px;
             background-color: black;
-            color: white;
-            font-size: large;
+            color: rgb(0, 250, 33);
+            font-size: small;
             margin: 0;
         }
         
@@ -34,7 +34,7 @@
             background-size: 100% 200px;
             width: 100%;
             color: azure;
-            font-size: large;
+            font-size: 32px;
             margin: 0;
         }
         
@@ -50,33 +50,41 @@
         
         #date {
             position: absolute;
-            bottom: 20px;
+            top: 500px;
             left: 20px;
-            font-size: 32px;
+            font-size: 48px;
             text-align: center;
+            opacity: 70%;
+            text-shadow: 0 0 3px yellow;
         }
         
         #sun {
             position: absolute;
-            bottom: 20px;
+            top: 500px;
             left: 350px;
-            font-size: 32px;
+            font-size: 48px;
             text-align: center;
+            opacity: 70%;
+            text-shadow: 0 0 3px yellow;
         }
         
         #temp {
             position: absolute;
             top: 50px;
             left: 50px;
-            font-size: 96px;
+            font-size: 148px;
             text-align: center;
+            opacity: 70%;
+            text-shadow: 0 0 3px yellow;
         }
         
         #more {
             float: right;
-            font-size: 32px;
+            font-size: 48px;
             margin-top: 100px;
             margin-right: 50px;
+            opacity: 70%;
+            text-shadow: 0 0 3px yellow;
         }
         
         .ddate {
@@ -122,7 +130,7 @@
 
                 <%= current.temp%>&#8451;
             </div>
-            <div style="font-size: 32px;">
+            <div style="font-size: 48px;">
                 Feel Like:
                 <%= current.feels_like%>&#8451;
             </div>

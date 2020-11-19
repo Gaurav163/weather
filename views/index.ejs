@@ -45,9 +45,7 @@ transition: all 0.3s;
 
 
     <br><br>
-    <h1 style="color:black">For Current location click Weather. </h1>
-    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()">Weather of Current Loaction</div>
-    <br><br>
+
     <div id="ready"></div>
 
 
@@ -58,22 +56,16 @@ transition: all 0.3s;
     <script>
         var x = document.getElementById("ready");
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser or you don't allow location.";
         }
+
 
         function showPosition(position) {
-            x.innerHTML = '<span style="font-size: large;color: black;">To view your result </span>    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()"><a href="/weather/' + position.coords.latitude + '/' + position.coords.longitude + '"" style="text-decoration: none;color: rgb(0, 155, 13)">Click here</a></div>'
-        }
-
-        function func() {
-            var z = document.getElementById("long").value;
-            var y = document.getElementById("lat").value;
-            x.innerHTML = '<span style="font-size: large;color: black;">To view your result </span>    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()"><a href="/weather/' + y + '/' + z + '" style="text-decoration: none;color: rgb(0, 155, 13)">Click here</a></div>'
+            x.innerHTML = '<h1 style="color:black">For Current location Weather. </h1> <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="getLocation()"><a href="/weather/' + position.coords.latitude + '/' + position.coords.longitude + '"" style="text-decoration: none;color: rgb(0, 155, 13)">Weather of Current Loaction</a></div>'
         }
     </script>
 
