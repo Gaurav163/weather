@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -31,15 +30,19 @@ transition: all 0.3s;
 
     </div>
     <br><br>
-    <div class="form-group">
-        <label class="control-label" style=' color: rgb(0, 155, 13)'>Longitude :</label>
-        <input type="text" class="form-control" id="long" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
-    </div>
-    <div class="form-group">
-        <label class="control-label" style=' color: rgb(0, 155, 13)'>Latitude :</label>
-        <input type="text" class="form-control" id="lat" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
-    </div>
-    <div class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" onclick="func()">Get Weather</div>
+    <form action="/wform" method="POST">
+        <div class="form-group">
+            <label class="control-label" style=' color: rgb(0, 155, 13)'>Longitude :</label>
+            <input type="text" class="form-control" name="lon" id="long" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
+        </div>
+        <div class="form-group">
+            <label class="control-label" style=' color: rgb(0, 155, 13)'>Latitude :</label>
+            <input type="text" class="form-control" name="lat" id="lat" style="max-width: 250px;box-shadow: 0px 0px 10px black;">
+        </div>
+        <button class="btn btn-info" style="background-color: black; color: rgb(0, 155, 13);font-size: large;" type="Submit">Get Weather</button>
+    </form>
+
+
 
     <br><br>
     <h1 style="color:black">For Current location click Weather. </h1>

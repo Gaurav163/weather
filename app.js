@@ -11,6 +11,10 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+app.post("/wform", (req, res) => {
+    res.redirect("/weather/" + req.body.lat + "/" + req.body.lon);
+})
+
 app.get("/weather/:lat/:log", async(req, res) => {
     var link = "https://api.openweathermap.org/data/2.5/onecall?lat=" + req.params.lat + "&lon=" + req.params.log + "&units=metric&appid=8ed570992ae0c1ecb5808ef76dd85ccd";
     console.log(link);
